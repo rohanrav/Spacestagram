@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
 
-function App() {
+import { Row, Col, Container } from "react-bootstrap";
+
+import Header from "./components/Header";
+import ImageList from "./components/ImageList";
+
+import backgroundImage from "./assets/background.svg";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ParentDiv>
+      <Layout>
+        <Container>
+          <Row>
+            <Header />
+            <Col md={8}>
+              <ImageList />
+            </Col>
+            <Col md={4}></Col>
+          </Row>
+        </Container>
+      </Layout>
+    </ParentDiv>
   );
-}
+};
+
+const ParentDiv = styled.div`
+  min-height: 100vh;
+`;
+
+const Layout = styled.div`
+  background: url(${backgroundImage});
+  background-position: center;
+  min-height: 100vh;
+`;
 
 export default App;
