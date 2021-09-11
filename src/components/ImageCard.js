@@ -14,7 +14,7 @@ class ImageCard extends React.Component {
     super(props);
     this.imageRef = React.createRef();
     this.cardBodyRef = React.createRef();
-    this.state = { spans: 0, added: false };
+    this.state = { spans: 0, isAdded: false };
   }
 
   componentDidMount() {
@@ -30,12 +30,12 @@ class ImageCard extends React.Component {
   };
 
   onLikeButtonClick = (e) => {
-    if (!this.state.added) {
+    if (!this.state.isAdded) {
       this.props.addLikedImage(this.cardBodyRef.current.id);
     } else {
       this.props.removeLikedImage(this.cardBodyRef.current.id);
     }
-    this.setState({ added: !this.state.added });
+    this.setState({ isAdded: !this.state.isAdded });
   };
 
   render() {
@@ -68,7 +68,7 @@ class ImageCard extends React.Component {
             >
               <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
             </svg>{" "}
-            {this.state.added ? "Unlike" : "Like"}
+            {this.state.isAdded ? "Unlike" : "Like"}
           </LinkButton>
         </SCardBody>
       </Card>
@@ -95,4 +95,12 @@ const CardBodyText = styled(Heading)`
   font-weight: 400;
 `;
 
-export default connect(null, { addLikedImage, removeLikedImage })(ImageCard);
+const mapStateToProps = ({ likedImages }) => {
+  return { likedImages };
+};
+
+export default connect(mapStateToProps, { addLikedImage, removeLikedImage })(
+  ImageCard
+);
+
+// this.props.likedImages.filter((imgId) => imgId === id).length > 0

@@ -5,6 +5,7 @@ import { Row, Col, Container } from "react-bootstrap";
 
 import Header from "./components/Header";
 import ImageList from "./components/ImageList";
+import LikedImagesList from "./components/LikedImagesList";
 
 import backgroundImage from "./assets/background.svg";
 
@@ -18,7 +19,9 @@ const App = () => {
             <Col md={8}>
               <ImageList />
             </Col>
-            <Col md={4}></Col>
+            <Col md={4}>
+              <LikedImagesList />
+            </Col>
           </Row>
         </Container>
       </Layout>
