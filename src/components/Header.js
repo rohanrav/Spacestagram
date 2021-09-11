@@ -12,8 +12,8 @@ const Header = () => {
       <SHeading>Spacestagram</SHeading>
       <UFOImage src={ufo} />
       <SText>
-        Do you think aliens exist? Find out yourself from the Curiosity Rover's
-        photos!
+        Do you think aliens exist? Discover them for yourself from the Curiosity
+        Rover's photos!
       </SText>
     </SHeader>
   );

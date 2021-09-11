@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import format from "date-fns/format";
+import subDays from "date-fns/subDays";
 
-import ImageCard from "./ImageCard"; // pass in src, key, desciprtion, date, title --> need to modify to support updated card
+import { fetchImages } from "../actions";
 
-const ImageList = () => {
-  return <SImageList>ImageList</SImageList>;
+import ImageCard from "./ImageCard";
+
+const ImageList = ({ fetchImages, images }) => {
+  useEffect(() => {
+    fetchImages(format(subDays(new Date(), 3), "yyyy-MM-dd"));
+  }, [fetchImages]);
+
+  const renderedImages = images.map((ele) => (
+    <ImageCard key={ele.id} image={ele} />
+  ));
+  return <SImageList>{renderedImages}</SImageList>;
 };
 
 const SImageList = styled.div`
@@ -14,4 +26,8 @@ const SImageList = styled.div`
   grid-auto-rows: 10px;
 `;
 
-export default ImageList;
+const mapStateToProps = (state) => {
+  return { images: state.images };
+};
+
+export default connect(mapStateToProps, { fetchImages })(ImageList);

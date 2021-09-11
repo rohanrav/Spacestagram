@@ -37,3 +37,6 @@ const Layout = styled.div`
 `;
 
 export default App;
+
+// https://loading.io/pattern/i-nz27g4/
+// https://www.flaticon.com/free-icon/ufo_214358
