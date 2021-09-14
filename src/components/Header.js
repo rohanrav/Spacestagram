@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import Heading from "./Text/Heading";
-import Text from "./Text/DefaultText";
 
 import ufo from "../assets/ufo.png";
 

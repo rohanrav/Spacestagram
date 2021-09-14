@@ -28,11 +28,13 @@ export const fetchImages =
     }
   };
 
-export const addLikedImage = (id) => {
-  return {
+export const addLikedImage = (id) => async (dispatch, getState) => {
+  const { images } = getState();
+  const likedImage = images.filter((img) => id === img.id.toString())[0];
+  dispatch({
     type: ADD_LIKED_IMAGE,
-    payload: id,
-  };
+    payload: likedImage,
+  });
 };
 
 export const removeLikedImage = (id) => {

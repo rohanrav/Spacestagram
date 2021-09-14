@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import theme from "../theme/theme";
 import { Card } from "react-bootstrap";
@@ -8,56 +8,64 @@ import { addLikedImage, removeLikedImage } from "../actions";
 
 import Heading from "./Text/Heading";
 import LinkButton from "./LinkButton";
+import ImageModalView from "./ImageModalView";
+import ModalBody from "./ModalBody";
 
-class ImageCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.imageRef = React.createRef();
-    this.cardBodyRef = React.createRef();
-    this.state = { spans: 0, isAdded: false };
-  }
+const ImageCard = ({ addLikedImage, removeLikedImage, image, likedImages }) => {
+  const imageRef = useRef();
+  const cardBodyRef = useRef();
+  const [spans, setSpans] = useState(0);
+  const [isAdded, setIsAdded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  componentDidMount() {
-    this.imageRef.current.addEventListener("load", this.setSpans);
-  }
+  useEffect(() => {
+    imageRef.current.addEventListener("load", setImageRowSpans);
+  }, []);
 
-  setSpans = () => {
-    const height =
-      this.imageRef.current.clientHeight +
-      this.cardBodyRef.current.clientHeight;
-    const spans = Math.ceil(height / 10 + 1);
-    this.setState({ spans: spans });
-  };
-
-  onLikeButtonClick = (e) => {
-    if (!this.state.isAdded) {
-      this.props.addLikedImage(this.cardBodyRef.current.id);
+  useEffect(() => {
+    if (likedImages.filter((ele) => ele.id === image.id).length > 0) {
+      setIsAdded(true);
     } else {
-      this.props.removeLikedImage(this.cardBodyRef.current.id);
+      setIsAdded(false);
     }
-    this.setState({ isAdded: !this.state.isAdded });
+  }, [likedImages]);
+
+  const setImageRowSpans = () => {
+    const height =
+      imageRef.current.clientHeight + cardBodyRef.current.clientHeight;
+    const spans = Math.ceil(height / 10 + 1);
+    setSpans(spans);
   };
 
-  render() {
-    const { img_src, id, earth_date, camera } = this.props.image;
-    return (
+  const onLikeButtonClick = () => {
+    if (!isAdded) {
+      addLikedImage(cardBodyRef.current.id);
+    } else {
+      removeLikedImage(cardBodyRef.current.id);
+    }
+  };
+
+  const { img_src, id, earth_date, camera } = image;
+  return (
+    <>
       <Card
         style={{
-          gridRowEnd: `span ${this.state.spans}`,
+          gridRowEnd: `span ${spans}`,
           marginBottom: "10px",
           backgroundColor: "#3c4650",
         }}
       >
         <SCardImg
           variant="top"
-          ref={this.imageRef}
+          ref={imageRef}
           alt={`NASA Curiosity Rover Image: ${id}`}
           src={img_src}
+          onClick={() => setShowModal(true)}
         />
-        <SCardBody ref={this.cardBodyRef} id={id}>
+        <SCardBody ref={cardBodyRef} id={id}>
           <CardTitle>{camera.full_name}</CardTitle>
           <CardBodyText>{earth_date}</CardBodyText>
-          <LinkButton onClick={this.onLikeButtonClick}>
+          <LinkButton onClick={onLikeButtonClick}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -68,17 +76,24 @@ class ImageCard extends React.Component {
             >
               <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
             </svg>{" "}
-            {this.state.isAdded ? "Unlike" : "Like"}
+            {isAdded ? "Unlike" : "Like"}
           </LinkButton>
         </SCardBody>
       </Card>
-    );
-  }
-}
+      <ImageModalView
+        setShowModal={setShowModal}
+        showModal={showModal}
+        modalBody={<ModalBody imgSrc={img_src} />}
+        modalTitle={`${camera.full_name} (${earth_date})`}
+      />
+    </>
+  );
+};
 
 const SCardImg = styled(Card.Img)`
   padding: 16px;
   border-radius: 22.5px;
+  cursor: pointer;
 `;
 
 const SCardBody = styled(Card.Body)`
@@ -102,5 +117,3 @@ const mapStateToProps = ({ likedImages }) => {
 export default connect(mapStateToProps, { addLikedImage, removeLikedImage })(
   ImageCard
 );
-
-// this.props.likedImages.filter((imgId) => imgId === id).length > 0
