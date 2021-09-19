@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import theme from "../theme/theme";
 
 const HorizontalRule = styled.hr`
-  ${({ color = "#3c4650", height = "5px" }) => `
+  ${({ color = theme.color.primary, height = "5px" }) => `
     background-color: ${color};
     opacity: 0.75;
     margin: 0 0 5px 0;

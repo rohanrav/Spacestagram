@@ -1,10 +1,11 @@
 const theme = {
   color: {
     background: "#050A30",
-    accent: "#7EC8E3",
-    primary: "#D4F1F4",
+    accent: "#f5f5f5",
+    primary: "#3c4650",
     defaultText: "#F8F8FF",
     headingText: "#F5F5F5",
+    btnBackground: "#1d1d1d",
   },
 
   font: {
@@ -13,9 +14,10 @@ const theme = {
   },
 
   media: {
-    mobile: "only screen and (max-width: 0px)",
-    tablet: "only screen and (min-width: 0px) and (max-width: 0px)",
-    desktop: "only screen and (min-width: 0px)",
+    mobile: "only screen and (max-width: 414px)",
+    tablet: "only screen and (min-width: 415px) and (max-width: 991px)",
+    largeTablet: "only screen and (min-width: 991px) and (max-width: 1200px)",
+    desktop: "only screen and (min-width: 1201px) and (max-width: 1399px)",
   },
 };
 

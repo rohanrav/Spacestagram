@@ -8,6 +8,7 @@ import LinkButton from "./LinkButton";
 import { Col, Row } from "react-bootstrap";
 import ImageModalView from "./ImageModalView";
 import ModalBody from "./ModalBody";
+import theme from "../theme/theme";
 
 const LikedImagesCard = ({
   id,
@@ -24,11 +25,11 @@ const LikedImagesCard = ({
   };
 
   return (
-    <>
+    <React.Fragment>
       <SRow ref={cardRef} id={id}>
         <PaddedCol md={4}>
           <SImage
-            alt={`NASA Curiosity Rover Image: ${id}`}
+            alt={`Title: ${full_name} - Date: ${earth_date}`}
             src={img_src}
             onClick={() => setShowModal(true)}
           />
@@ -54,10 +55,15 @@ const LikedImagesCard = ({
       <ImageModalView
         setShowModal={setShowModal}
         showModal={showModal}
-        modalBody={<ModalBody imgSrc={img_src} />}
+        modalBody={
+          <ModalBody
+            imgSrc={img_src}
+            alt={`Title: ${full_name} - Date: ${earth_date}`}
+          />
+        }
         modalTitle={`${full_name} (${earth_date})`}
       />
-    </>
+    </React.Fragment>
   );
 };
 
@@ -67,7 +73,7 @@ const PaddedCol = styled(Col)`
 
 const SRow = styled(Row)`
   margin: 10px 0;
-  background-color: #3c4650;
+  background-color: ${theme.color.primary};
   border-radius: 5px;
 `;
 
@@ -77,6 +83,24 @@ const SImage = styled.img`
   object-fit: cover;
   border-radius: 5px;
   cursor: pointer;
+
+  @media ${theme.media["desktop"]} {
+    width: 100px;
+  }
+
+  @media ${theme.media["largeTablet"]} {
+    width: 85px;
+  }
+
+  @media ${theme.media["tablet"]} {
+    width: 60px;
+    height: 120px;
+  }
+
+  @media ${theme.media["mobile"]} {
+    width: 100%;
+    height: 150px;
+  }
 `;
 
 const CardTitle = styled(Heading)`

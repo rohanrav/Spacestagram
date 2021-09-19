@@ -4,34 +4,45 @@ import styled from "styled-components";
 import Heading from "./Text/Heading";
 
 import ufo from "../assets/ufo.png";
+import theme from "../theme/theme";
 
 const Header = () => {
   return (
     <SHeader>
-      <SHeading>Spacestagram</SHeading>
+      <LogoText>Spacestagram</LogoText>
       <UFOImage src={ufo} />
-      <SText>
+      <DescriptionText>
         Do you think aliens exist? Discover them for yourself from the Curiosity
         Rover's photos!
-      </SText>
+      </DescriptionText>
     </SHeader>
   );
 };
 
 const SHeader = styled.div`
-  ${({ theme }) => `
-        margin-top: 50px;
-    `}
+  margin-top: 50px;
+
+  @media ${theme.media["mobile"]} {
+    margin-top: 25px;
+  }
 `;
 
-const SHeading = styled(Heading)`
+const LogoText = styled(Heading)`
   display: inline;
   font-size: 2.5rem;
+
+  @media ${theme.media["mobile"]} {
+    font-size: 2.1rem;
+  }
 `;
 
-const SText = styled(Heading)`
+const DescriptionText = styled(Heading)`
   font-size: 18px;
   font-weight: 400;
+
+  @media ${theme.media["mobile"]} {
+    font-weight: 300;
+  }
 `;
 
 const UFOImage = styled.img`

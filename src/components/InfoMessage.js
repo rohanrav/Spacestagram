@@ -3,8 +3,8 @@ import { Alert } from "react-bootstrap";
 import theme from "../theme/theme";
 
 const SAlert = styled(Alert)`
-  color: #f5f5f5;
-  background-color: #3c4650;
+  color: ${theme.color.accent};
+  background-color: ${theme.color.primary};
   font-family: ${theme.font.header};
   border: none;
 `;

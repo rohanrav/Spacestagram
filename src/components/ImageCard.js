@@ -32,7 +32,7 @@ const ImageCard = ({ addLikedImage, removeLikedImage, image, likedImages }) => {
 
   const setImageRowSpans = () => {
     const height =
-      imageRef.current.clientHeight + cardBodyRef.current.clientHeight;
+      imageRef.current?.clientHeight + cardBodyRef.current?.clientHeight || 0;
     const spans = Math.ceil(height / 10 + 1);
     setSpans(spans);
   };
@@ -47,18 +47,18 @@ const ImageCard = ({ addLikedImage, removeLikedImage, image, likedImages }) => {
 
   const { img_src, id, earth_date, camera } = image;
   return (
-    <>
+    <React.Fragment>
       <Card
         style={{
           gridRowEnd: `span ${spans}`,
           marginBottom: "10px",
-          backgroundColor: "#3c4650",
+          backgroundColor: theme.color.primary,
         }}
       >
         <SCardImg
           variant="top"
           ref={imageRef}
-          alt={`NASA Curiosity Rover Image: ${id}`}
+          alt={`Title: ${camera.full_name} - Date: ${earth_date}`}
           src={img_src}
           onClick={() => setShowModal(true)}
         />
@@ -83,10 +83,15 @@ const ImageCard = ({ addLikedImage, removeLikedImage, image, likedImages }) => {
       <ImageModalView
         setShowModal={setShowModal}
         showModal={showModal}
-        modalBody={<ModalBody imgSrc={img_src} />}
+        modalBody={
+          <ModalBody
+            imgSrc={img_src}
+            alt={`Title: ${camera.full_name} - Date: ${earth_date}`}
+          />
+        }
         modalTitle={`${camera.full_name} (${earth_date})`}
       />
-    </>
+    </React.Fragment>
   );
 };
 

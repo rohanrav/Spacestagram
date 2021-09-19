@@ -22,22 +22,21 @@ const persistConfig = {
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, reducers);
 let store = createStore(
-  // persistedReducer,
-  reducers,
+  persistedReducer,
   composeEnhancers(applyMiddleware(reduxThunk))
 );
 let persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <PersistGate loading={null} persistor={persistor}> */}
-    <ThemeProvider theme={Theme}>
-      <GlobalStyles />
-      <App />
-    </ThemeProvider>
-    {/* </PersistGate> */}
+    <PersistGate loading={null} persistor={persistor}>
+      <ThemeProvider theme={Theme}>
+        <GlobalStyles />
+        <App />
+      </ThemeProvider>
+    </PersistGate>
   </Provider>,
   document.querySelector("#root")
 );

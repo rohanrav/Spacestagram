@@ -1,19 +1,25 @@
 import styled from "styled-components";
-import theme from "../theme/theme";
 
 const LinkButton = styled.button`
-  padding: 5px 15px 5px 15px;
-  font-family: ${theme.font.header};
-  border-radius: 10px;
-  background-color: #1d1d1d;
-  color: ${theme.color.defaultText};
-  border: none;
-  transition: 0.2s;
+  ${({ theme, inverted = false }) => `
+    padding: 5px 15px 5px 15px;
+    font-family: ${theme.font.header};
+    border-radius: 10px;
+    transition: 0.2s;
+    background-color: ${
+      inverted ? theme.color.defaultText : theme.color.btnBackground
+    };
+    border: ${inverted ? `2px solid ${theme.color.defaultText}` : "none"};
+    color: ${inverted ? theme.color.btnBackground : theme.color.defaultText};
 
-  &:hover {
-    background-color: ${theme.color.defaultText};
-    color: #1d1d1d;
-  }
+    &:hover {
+      background-color: ${
+        inverted ? theme.color.btnBackground : theme.color.defaultText
+      };
+      color: ${inverted ? theme.color.defaultText : theme.color.btnBackground};
+      border: ${inverted ? `2px solid ${theme.color.defaultText}` : "none"};
+    }
+  `}
 `;
 
 export default LinkButton;

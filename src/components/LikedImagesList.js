@@ -25,24 +25,24 @@ const LikedImagesList = ({ likedImages }) => {
     } else {
       return (
         <InfoMessage variant="dark">
-          You're lookin' a little empty there!
+          Add some photos to get started!
         </InfoMessage>
       );
     }
   };
 
   return (
-    <>
+    <React.Fragment>
       <HorizontalRule />
       <SHeading>Liked Images</SHeading>
       {renderLikedImagesTable()}
-    </>
+    </React.Fragment>
   );
 };
 
 const SHeading = styled(Heading)`
   font-size: 1.75rem;
-  margin: 10px 0 18px 0;
+  margin: 10px 0 16px 0;
 `;
 
 const mapStateToProps = ({ likedImages }) => {

@@ -40,6 +40,7 @@ const ImageList = ({ fetchImages, images }) => {
       <AddMoreImagesContainer>
         <AddMoreImagesButton
           onClick={() => setNumImages(numImages + IMAGES_TO_ADD_ON_LOAD)}
+          inverted
         >
           Load More Images
         </AddMoreImagesButton>
@@ -58,10 +59,10 @@ const ImageList = ({ fetchImages, images }) => {
         .filter(Boolean);
 
       return (
-        <>
+        <React.Fragment>
           <SImageList>{renderedImages}</SImageList>
           {renderAddMoreImagesButton()}
-        </>
+        </React.Fragment>
       );
     } else {
       return (
@@ -75,21 +76,23 @@ const ImageList = ({ fetchImages, images }) => {
   return (
     <ImageListContainer>
       <HorizontalRule />
-      <UtilityRow>
-        <UtilityCol>
-          <SHeading>Date: {displayDate}</SHeading>
-        </UtilityCol>
-        <UtilityCol style={{ textAlign: "right" }}>
-          <SForm onSubmit={onDateSubmit}>
+      <SRow>
+        <SCol lg={6}>
+          <DateHeading>Date: {displayDate}</DateHeading>
+        </SCol>
+        <SCol lg={6} style={{ textAlign: "right" }}>
+          <DateSearchForm onSubmit={onDateSubmit}>
             <Form.Control
               value={date}
               type="date"
               onChange={(e) => setDate(e.target.value)}
             />
-            <FormSubmitButton type="submit">Search</FormSubmitButton>
-          </SForm>
-        </UtilityCol>
-      </UtilityRow>
+            <FormSubmitButton type="submit" inverted>
+              Search
+            </FormSubmitButton>
+          </DateSearchForm>
+        </SCol>
+      </SRow>
       {renderImages()}
     </ImageListContainer>
   );
@@ -102,32 +105,45 @@ const AddMoreImagesContainer = styled.div`
 
 const FormSubmitButton = styled(LinkButton)`
   margin-left: 10px;
-  background-color: ${theme.color.defaultText};
-  color: #1d1d1d;
-  border: 2px solid ${theme.color.defaultText};
-
-  &:hover {
-    background-color: #1d1d1d;
-    color: ${theme.color.defaultText};
-    border: 2px solid ${theme.color.defaultText};
-  }
 `;
 
-const UtilityRow = styled(Row)`
+const SRow = styled(Row)`
   margin: 10px 0;
 `;
 
-const UtilityCol = styled(Col)`
+const SCol = styled(Col)`
   padding: 0;
+
+  @media ${theme.media["tablet"]} {
+    &:first-child {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media ${theme.media["mobile"]} {
+    margin-bottom: 10px;
+  }
 `;
 
-const SForm = styled(Form)`
+const DateSearchForm = styled(Form)`
   display: inline-flex;
+
+  @media ${theme.media["tablet"]} {
+    width: 100%;
+  }
+
+  @media ${theme.media["mobile"]} {
+    width: 100%;
+  }
 `;
 
-const SHeading = styled(Heading)`
+const DateHeading = styled(Heading)`
   font-size: 1.75rem;
   display: inline;
+
+  @media ${theme.media["mobile"]} {
+    font-size: 1.35rem;
+  }
 `;
 
 const ImageListContainer = styled.div`
@@ -136,15 +152,6 @@ const ImageListContainer = styled.div`
 
 const AddMoreImagesButton = styled(LinkButton)`
   padding: 10px 30px 10px 30px;
-  background-color: ${theme.color.defaultText};
-  border: 2px solid ${theme.color.defaultText};
-  color: #1d1d1d;
-
-  &:hover {
-    background-color: #1d1d1d;
-    color: ${theme.color.defaultText};
-    border: 2px solid ${theme.color.defaultText};
-  }
 `;
 
 const SImageList = styled.div`
@@ -152,6 +159,13 @@ const SImageList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(${IMAGE_WIDTH}px, 1fr));
   grid-gap: 0 10px;
   grid-auto-rows: 10px;
+
+  @media ${theme.media["desktop"]} {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(${IMAGE_WIDTH - 50}px, 1fr)
+    );
+  }
 `;
 
 const mapStateToProps = ({ images }) => {

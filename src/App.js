@@ -7,33 +7,38 @@ import Header from "./components/Header";
 import ImageList from "./components/ImageList";
 import LikedImagesList from "./components/LikedImagesList";
 import Footer from "./components/Footer";
+import theme from "./theme/theme";
 
 import backgroundImage from "./assets/background.svg";
 
 const App = () => {
   return (
-    <ParentDiv>
-      <SContainer>
+    <Wrapper>
+      <MainContentContainer>
         <Row>
           <Header />
           <Col md={8}>
             <ImageList />
           </Col>
-          <ScrollableCol md={4}>
+          <ScrollableColumn md={4}>
             <LikedImagesList />
-          </ScrollableCol>
+          </ScrollableColumn>
         </Row>
-      </SContainer>
+      </MainContentContainer>
       <Footer />
-    </ParentDiv>
+    </Wrapper>
   );
 };
 
-const SContainer = styled(Container)`
+const MainContentContainer = styled(Container)`
   min-height: 100vh;
+
+  @media ${theme.media["mobile"]} {
+    padding: 15px 30px;
+  }
 `;
 
-const ScrollableCol = styled(Col)`
+const ScrollableColumn = styled(Col)`
   position: sticky;
   top: 20px;
   height: fit-content;
@@ -42,7 +47,7 @@ const ScrollableCol = styled(Col)`
   margin-bottom: 20px;
 `;
 
-const ParentDiv = styled.div`
+const Wrapper = styled.div`
   background: url(${backgroundImage});
   background-position: center;
 `;

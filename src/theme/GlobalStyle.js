@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Theme from "./theme";
+import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
     html {
@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         margin: 0;
-        font-family: ${Theme.font.default};
+        font-family: ${theme.font.default};
         height: 100%;
         min-height: 100%;
     }

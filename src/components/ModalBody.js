@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const ModalBody = ({ imgSrc }) => {
-  return <SModalImage src={imgSrc} />;
+const ModalBody = ({ imgSrc, alt }) => {
+  return <SModalImage src={imgSrc} alt={alt} />;
 };
 
 const SModalImage = styled.img`
