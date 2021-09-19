@@ -34,7 +34,7 @@ const MainContentContainer = styled(Container)`
   min-height: 100vh;
 
   @media ${theme.media["mobile"]} {
-    padding: 15px 30px;
+    padding: 15px 25px;
   }
 `;
 

@@ -24,6 +24,7 @@ const SHeader = styled.div`
 
   @media ${theme.media["mobile"]} {
     margin-top: 25px;
+    text-align: center;
   }
 `;
 

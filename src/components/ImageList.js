@@ -122,6 +122,10 @@ const SCol = styled(Col)`
 
   @media ${theme.media["mobile"]} {
     margin-bottom: 10px;
+
+    &:first-child {
+      text-align: center;
+    }
   }
 `;
 

@@ -7,6 +7,7 @@ import Heading from "./Text/Heading";
 import HorizontalRule from "./HorizontalRule";
 import LikedImagesCard from "./LikedImagesCard";
 import InfoMessage from "./InfoMessage";
+import theme from "../theme/theme";
 
 const LikedImagesList = ({ likedImages }) => {
   const renderLikedImagesTable = () => {
@@ -43,6 +44,9 @@ const LikedImagesList = ({ likedImages }) => {
 const SHeading = styled(Heading)`
   font-size: 1.75rem;
   margin: 10px 0 16px 0;
+  @media ${theme.media["mobile"]} {
+    text-align: center;
+  }
 `;
 
 const mapStateToProps = ({ likedImages }) => {

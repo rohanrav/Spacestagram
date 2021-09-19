@@ -64,6 +64,7 @@ const FooterWrapper = styled.div`
   @media ${theme.media["mobile"]} {
     height: fit-content;
     padding: 40px 20px;
+    text-align: center;
   }
 `;
 
