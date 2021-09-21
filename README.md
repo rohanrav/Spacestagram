@@ -10,6 +10,18 @@ This application was built with React, Redux, and Styled Components.
 
 Here are some screenshots from the application:
 
+### Home Page
+
+![](https://github.com/rohanrav/ImageRepo/blob/master/screenshots/Home.png)
+
+### Accounts Page
+
+![](https://github.com/rohanrav/ImageRepo/blob/master/screenshots/Account.png)
+
+### Feed Page
+
+![](https://github.com/rohanrav/ImageRepo/blob/master/screenshots/Feed.png)
+
 ## Graphic Attributions
 
 - UFO Graphic from (Pixel Buddha): https://www.flaticon.com/free-icon/ufo_214358
