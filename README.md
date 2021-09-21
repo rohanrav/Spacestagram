@@ -10,17 +10,15 @@ This application was built with React, Redux, and Styled Components.
 
 Here are some screenshots from the application:
 
-### Home Page
+### Home
 
-![](https://github.com/rohanrav/ImageRepo/blob/master/screenshots/Home.png)
+![](https://github.com/rohanrav/Spacestagram/blob/master/screenshots/HomepageTop.png)
 
-### Accounts Page
+![](https://github.com/rohanrav/Spacestagram/blob/master/screenshots/HomepageBottom.png)
 
-![](https://github.com/rohanrav/ImageRepo/blob/master/screenshots/Account.png)
+### Image Modal
 
-### Feed Page
-
-![](https://github.com/rohanrav/ImageRepo/blob/master/screenshots/Feed.png)
+![](https://github.com/rohanrav/Spacestagram/blob/master/screenshots/Modal.png)
 
 ## Graphic Attributions
 
