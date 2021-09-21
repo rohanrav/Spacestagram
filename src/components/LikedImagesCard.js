@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
-
+import { connect } from "react-redux";
 import { removeLikedImage } from "../actions";
+
+import theme from "../theme/theme";
+
+import { Col, Row } from "react-bootstrap";
 import Heading from "./Text/Heading";
 import LinkButton from "./LinkButton";
-import { Col, Row } from "react-bootstrap";
 import ImageModalView from "./ImageModalView";
 import ModalBody from "./ModalBody";
-import theme from "../theme/theme";
 
 const LikedImagesCard = ({
   id,

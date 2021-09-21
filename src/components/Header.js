@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import Heading from "./Text/Heading";
-
 import ufo from "../assets/ufo.png";
 import theme from "../theme/theme";
+
+import Heading from "./Text/Heading";
 
 const Header = () => {
   return (

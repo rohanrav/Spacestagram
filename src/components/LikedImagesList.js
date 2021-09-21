@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-
 import { removeLikedImage } from "../actions";
+
+import theme from "../theme/theme";
+
 import Heading from "./Text/Heading";
 import HorizontalRule from "./HorizontalRule";
 import LikedImagesCard from "./LikedImagesCard";
 import InfoMessage from "./InfoMessage";
-import theme from "../theme/theme";
 
 const LikedImagesList = ({ likedImages }) => {
   const renderLikedImagesTable = () => {

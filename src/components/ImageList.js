@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
 import format from "date-fns/format";
 import subDays from "date-fns/subDays";
-import theme from "../theme/theme";
-
+import { connect } from "react-redux";
 import { fetchImages } from "../actions";
 
+import theme from "../theme/theme";
+
+import { Form, Row, Col } from "react-bootstrap";
 import ImageCard from "./ImageCard";
 import LinkButton from "./LinkButton";
 import HorizontalRule from "./HorizontalRule";
 import Heading from "./Text/Heading";
-import { Form, Row, Col } from "react-bootstrap";
 import InfoMessage from "./InfoMessage";
 
 const IMAGES_TO_ADD_ON_LOAD = 9;

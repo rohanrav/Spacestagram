@@ -1,11 +1,12 @@
-import styled from "styled-components";
 import React from "react";
+import styled from "styled-components";
+
+import theme from "../theme/theme";
+import ufo from "../assets/ufo.png";
 
 import { Row, Col, Container } from "react-bootstrap";
 import Heading from "./Text/Heading";
 import HorizontalRule from "./HorizontalRule";
-import theme from "../theme/theme";
-import ufo from "../assets/ufo.png";
 
 const Footer = () => {
   return (

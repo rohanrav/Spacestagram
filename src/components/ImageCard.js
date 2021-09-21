@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import theme from "../theme/theme";
-import { Card } from "react-bootstrap";
 import { connect } from "react-redux";
-
 import { addLikedImage, removeLikedImage } from "../actions";
 
+import theme from "../theme/theme";
+
+import { Card } from "react-bootstrap";
 import Heading from "./Text/Heading";
 import LinkButton from "./LinkButton";
 import ImageModalView from "./ImageModalView";
